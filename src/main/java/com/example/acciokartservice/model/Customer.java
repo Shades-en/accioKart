@@ -6,6 +6,9 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.util.Date;
 
 
 //if you change table name - creates a new table
@@ -20,13 +23,27 @@ import lombok.experimental.FieldDefaults;
 //@Table(name="customers")
 public class Customer {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
+
     String name;
+
     @Column(unique = true)
     @Email
     String email;
+
     @Enumerated(EnumType.STRING)
     Gender gender;
+
     @Size(min=2, max=20)
     String city;
+
+    @CreationTimestamp
+    Date createdAt;
+
+    int age;
+
+    @OneToOne // first part is current class
+    @JoinColumn(name="identity_id")
+    Identity identity;
 }

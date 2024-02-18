@@ -1,8 +1,7 @@
 package com.example.acciokartservice.model;
 
-import com.example.acciokartservice.Enum.Gender;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.example.acciokartservice.Enum.IdentityType;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -12,17 +11,12 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Seller {
+public class Identity {
     @Id
     int id;
 
-    String name;
+    @Enumerated(EnumType.STRING)
+    IdentityType identityType;
 
-    String mobileNum;
-
-    int age;
-
-    String panNo;
-
-    Gender gender;
+    String IdentityNumber;
 }
