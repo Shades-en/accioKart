@@ -8,7 +8,9 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 //if you change table name - creates a new table
@@ -20,6 +22,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 //@Table(name="customers")
 public class Customer {
     @Id
@@ -43,7 +46,11 @@ public class Customer {
 
     int age;
 
-    @OneToOne // first part is current class
+    @OneToOne(cascade = CascadeType.ALL) // first part is current class //if you delete customer, identity gets deleted too
     @JoinColumn(name="identity_id")
     Identity identity;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="customer_id")
+    List<OrderEntity> orders = new ArrayList<>();
 }

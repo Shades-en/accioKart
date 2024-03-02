@@ -13,10 +13,11 @@ import lombok.experimental.FieldDefaults;
 @Setter
 public class Identity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
     @Enumerated(EnumType.STRING)
     IdentityType identityType;
 
-    String IdentityNumber;
+    String identityNumber;
 }
