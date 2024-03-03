@@ -1,6 +1,5 @@
-package com.example.acciokartservice.model;
+package com.example.acciokartservice.dto.response;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -10,21 +9,15 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
 
-@Entity
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Builder
-public class OrderEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+public class OrderResponse {
     String orderId;
     double totalValue;
     int numberOfItems;
-
-    @CreationTimestamp
     Date created;
 }
